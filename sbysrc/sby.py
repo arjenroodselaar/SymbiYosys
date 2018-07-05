@@ -18,8 +18,7 @@
 #
 
 import os, sys, getopt, shutil, tempfile
-##yosys-sys-path##
-from sby_core import SbyJob, SbyAbort
+from SymbiYosys.sbysrc.sby_core import SbyJob, SbyAbort
 from time import localtime
 
 sbyfile = None
@@ -298,4 +297,3 @@ for t in tasknames:
     retcode |= run_job(t)
 
 sys.exit(retcode)
-

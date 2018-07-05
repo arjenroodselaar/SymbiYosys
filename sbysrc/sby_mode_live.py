@@ -17,7 +17,7 @@
 #
 
 import re, os, getopt
-from sby_core import SbyTask
+from SymbiYosys.sbysrc.sby_core import SbyTask
 
 def run(job):
     job.handle_str_option("aigsmt", "yices")
@@ -32,9 +32,8 @@ def run(job):
         os.makedirs("%s/engine_%d" % (job.workdir, engine_idx))
 
         if engine[0] == "aiger":
-            import sby_engine_aiger
-            sby_engine_aiger.run("live", job, engine_idx, engine)
+            import SymbiYosys.sbysrc.sby_engine_aiger
+            SymbiYosys.sbysrc.sby_engine_aiger.run("live", job, engine_idx, engine)
 
         else:
             job.error("Invalid engine '%s' for live mode." % engine[0])
-

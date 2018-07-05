@@ -17,7 +17,7 @@
 #
 
 import re, os, getopt
-from sby_core import SbyTask
+from SymbiYosys.sbysrc.sby_core import SbyTask
 
 def run(job):
     job.handle_int_option("depth", 20)
@@ -31,9 +31,8 @@ def run(job):
         os.makedirs("%s/engine_%d" % (job.workdir, engine_idx))
 
         if engine[0] == "smtbmc":
-            import sby_engine_smtbmc
-            sby_engine_smtbmc.run("cover", job, engine_idx, engine)
+            import SymbiYosys.sbysrc.sby_engine_smtbmc
+            SymbiYosys.sbysrc.sby_engine_smtbmc.run("cover", job, engine_idx, engine)
 
         else:
             job.error("Invalid engine '%s' for cover mode." % engine[0])
-

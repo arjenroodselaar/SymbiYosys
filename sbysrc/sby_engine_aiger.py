@@ -17,7 +17,7 @@
 #
 
 import re, os, getopt
-from sby_core import SbyTask
+from SymbiYosys.sbysrc.sby_core import SbyTask
 
 def run(mode, job, engine_idx, engine):
     opts, solver_args = getopt.getopt(engine[1:], "", [])
@@ -138,4 +138,3 @@ def run(mode, job, engine_idx, engine):
 
     task.output_callback = output_callback
     task.exit_callback = exit_callback
-
