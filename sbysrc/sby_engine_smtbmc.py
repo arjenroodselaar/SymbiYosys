@@ -17,7 +17,7 @@
 #
 
 import re, os, getopt
-from sby_core import SbyTask
+from SymbiYosys.sbysrc.sby_core import SbyTask
 
 def run(mode, job, engine_idx, engine):
     smtbmc_opts = []
@@ -210,5 +210,3 @@ def run(mode, job, engine_idx, engine):
 
     task.output_callback = output_callback
     task.exit_callback = exit_callback
-
-
