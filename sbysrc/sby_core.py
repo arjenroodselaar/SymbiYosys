@@ -279,6 +279,11 @@ class SbyJob:
 
         for dstfile, lines in self.verbatim_files.items():
             dstfile = self.workdir + "/src/" + dstfile
+            parentdir = os.path.dirname(dstfile)
+
+            if parentdir != "":
+                os.makedirs(os.path.dirname(dstfile), exist_ok=True)
+
             self.log("Writing '%s'." % dstfile)
 
             with open(dstfile, "w") as f:
