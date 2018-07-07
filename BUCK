@@ -24,9 +24,12 @@ command_alias(
     name="job",
     exe=":sby",
     args=[
-        #"--yosys " + read_config("sby", "yosys", "yosys"),
-        #"--abc " + read_config("sby", "abc", "yosys-abc"),
-        #"--smtbmc " + read_config("sby", "smtbmc", "yosys-smtbmc"),
+        "--yosys",
+        read_config("sby", "yosys", "yosys"),
+        "--abc",
+        read_config("sby", "abc", "yosys-abc"),
+        "--smtbmc",
+        read_config("sby", "smtbmc", "yosys-smtbmc"),
     ],
     env={
         "PYTHONPATH": "{}:$PYTHONPATH".format(read_config(
