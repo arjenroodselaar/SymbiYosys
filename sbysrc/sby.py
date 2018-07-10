@@ -22,6 +22,7 @@ from SymbiYosys.sbysrc.sby_core import SbyJob, SbyAbort
 from time import localtime
 
 sbyfile = None
+changeidr = None
 workdir = None
 tasknames = list()
 opt_force = False
@@ -37,6 +38,9 @@ setupmode = False
 def usage():
     print("""
 sby [options] [<jobname>.sby [tasknames] | <dirname>]
+
+    -c <dirname>
+        change directory before starting tasks
 
     -d <dirname>
         set workdir name. default: <jobname> (without .sby)
@@ -77,14 +81,16 @@ sby [options] [<jobname>.sby [tasknames] | <dirname>]
     sys.exit(1)
 
 try:
-    opts, args = getopt.getopt(sys.argv[1:], "d:btfT:E", ["yosys=",
+    opts, args = getopt.getopt(sys.argv[1:], "c:d:btfT:E", ["yosys=",
             "abc=", "smtbmc=", "suprove=", "aigbmc=", "avy=", "btormc=",
             "dumpcfg", "dumptasks", "setup"])
 except:
     usage()
 
 for o, a in opts:
-    if o == "-d":
+    if o == "-c":
+        changedir = a
+    elif o == "-d":
         workdir = a
     elif o == "-f":
         opt_force = True
@@ -381,6 +387,8 @@ def run_job(taskname):
 
     return job.retcode
 
+if changedir:
+  os.chdir(changedir)
 
 retcode = 0
 for t in tasknames:
