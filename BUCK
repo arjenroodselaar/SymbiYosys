@@ -11,7 +11,7 @@ python_library(
 python_binary(
     name="sby",
     main_module="SymbiYosys.sbysrc.sby",
-    platform="macos-py3",
+    platform="py3",
     deps=[
         ":libSymbiYosys",
     ],
