@@ -42,6 +42,9 @@ sby [options] [<jobname>.sby [tasknames] | <dirname>]
     -c <dirname>
         change directory before starting tasks
 
+    -c <dirname>
+        change directory before starting tasks
+
     -d <dirname>
         set workdir name. default: <jobname> (without .sby)
 
