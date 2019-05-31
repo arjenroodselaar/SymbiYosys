@@ -22,7 +22,7 @@ from SymbiYosys.sbysrc.sby_core import SbyJob, SbyAbort
 from time import localtime
 
 sbyfile = None
-changeidr = None
+changedir = None
 workdir = None
 tasknames = list()
 opt_force = False
@@ -38,9 +38,6 @@ setupmode = False
 def usage():
     print("""
 sby [options] [<jobname>.sby [tasknames] | <dirname>]
-
-    -c <dirname>
-        change directory before starting tasks
 
     -c <dirname>
         change directory before starting tasks
@@ -266,6 +263,8 @@ def read_sbyconfig(sbydata, taskname):
 
     return cfgdata, tasklist
 
+if changedir:
+  os.chdir(changedir)
 
 sbydata = list()
 with (open(sbyfile, "r") if sbyfile is not None else sys.stdin) as f:
@@ -389,9 +388,6 @@ def run_job(taskname):
             print("%s %d %d" % (job.status, job.retcode, job.total_time), file=f)
 
     return job.retcode
-
-if changedir:
-  os.chdir(changedir)
 
 retcode = 0
 for t in tasknames:
